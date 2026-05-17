@@ -19,3 +19,7 @@ body{
 .quiz-card{
     width: 30rem;
 }
+.quiz-answer-card:hover{
+   cursor :pointer ;
+   background-color: #fccbc7;
+}

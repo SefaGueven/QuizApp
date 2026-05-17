@@ -15,3 +15,8 @@ function showQuestion(){
         document.getElementById('answer_4').innerHTML = question['answer_4'];
 
 }
+function answer(selection){
+    console.log('selected answer is',selection);
+    
+
+}
