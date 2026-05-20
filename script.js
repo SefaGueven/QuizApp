@@ -31,4 +31,5 @@ function answer(selection) {
     else                               // Wird ausgeführt, wenn die Antwort falsch ist.
         document.getElementById(selection).parentNode.classList.add('bg-danger');  
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');    // richtige wird dan hier auch angezeigt. 
+    document.getElementById('next-button').disabled = false;    
 }
