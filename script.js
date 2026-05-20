@@ -1,4 +1,4 @@
-let currentQuestion = 1;
+let currentQuestion = 0;
 
 function init() {
     document.getElementById("all-questions").innerHTML = questions.length;
@@ -17,11 +17,7 @@ function showQuestion() {
 }
 function answer(selection) {
     let question = questions[currentQuestion];
-    console.log('selected answer is', selection);
-    let selectedQuestionNumber = selection.slice(-1);               //slice(-1)=> Gibt das letzte Element – egal ob Array oder String.
-    console.log(selectedQuestionNumber);
-    console.log('Current question is ', question['right_answer']);
-
+    let selectedQuestionNumber = selection.slice(-1);               //slice(-1)=> Gibt das letzte Element – egal ob Array oder String
     let idOfRightAnswer = `answer_${question['right_answer']}`;     //Diese Zeile baut dynamisch eine ID zusammen, um die richtige Antwort im HTML zu finden. Das ist ein Template String (mit ` statt " ") Vorteil: Du kannst Variablen direkt einbauen (${...})
 
     if (selectedQuestionNumber == question['right_answer']) {       //Ist die ausgewählte Antwort gleich der richtigen Antwort?
@@ -29,7 +25,12 @@ function answer(selection) {
         document.getElementById(selection).parentNode.classList.add('bg-success'); // mit dem befehl"parentNode" zu Eltern-Element gehen.                   
     }
     else                               // Wird ausgeführt, wenn die Antwort falsch ist.
-        document.getElementById(selection).parentNode.classList.add('bg-danger');  
-        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');    // richtige wird dan hier auch angezeigt. 
-    document.getElementById('next-button').disabled = false;    
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');    // richtige wird dan hier auch angezeigt. 
+    document.getElementById('next-button').disabled = false;        // Button für Nächste Frage wird hier aktiviert.
+}
+
+function nextQuestion(){    //Funktion für Nächste frage aufrufen.
+    currentQuestion++;
+     showQuestion() ;
 }
