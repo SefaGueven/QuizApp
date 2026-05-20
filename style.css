@@ -23,3 +23,9 @@ body{
    cursor :pointer ;
    background-color: #fccbc7;
 }
+.bg-success{
+    color: rgb(255, 255, 255);
+}
+.bg-danger{
+    color: rgb(255, 255, 255);
+}
