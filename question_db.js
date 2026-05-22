@@ -53,6 +53,7 @@ let questions = [
         "answer_1": "URL",
         "answer_2": "Passwort",
         "answer_3": "Benutzername", 
+        "answer_4": "App",
         "right_answer": 1
     }
 ]
