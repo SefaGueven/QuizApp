@@ -24,7 +24,11 @@
             <span class="navbar-brand mb-0 h1">QuizApp</span>
         </div>
         <div class="container">
-            <div class="card quiz-card" >
+            <div class="card quiz-card" id="endScreen" style="display: none;">
+                Quiz Beendet!!
+            </div>
+
+            <div class="card quiz-card" id="questionBody">
                 <img src="assets/img/Linear.jpg" class="card-img-top" alt="card-img">
                 <div class="card-body">
                     <h5 class="card-title" id="questiontext">Frage</h5>
@@ -33,7 +37,7 @@
                             Antwort
                         </div>
                     </div>
-                    <div onclick="answer('answer_2')" class="card quiz-answer-card mb-2" >
+                    <div onclick="answer('answer_2')" class="card quiz-answer-card mb-2">
                         <div class="card-body" id="answer_2">
                             Antwort
                         </div>
@@ -42,7 +46,7 @@
                         <div class="card-body" id="answer_3">"
                             Antwort
                         </div>
-                    </div> 
+                    </div>
                     <div onclick="answer('answer_4')" class="card quiz-answer-card mb-2">
                         <div class="card-body" id="answer_4">
                             Antwort
@@ -50,10 +54,11 @@
                     </div>
 
                     <div class="question-footer">
-                      <span><b id="question-counter">1</b> von <b id="all-questions">5</b> Fragen
+                        <span><b id="question-counter">1</b> von <b id="all-questions">5</b> Fragen
                         </span>
-                        <button onclick=" nextQuestion()" class="btn btn-danger" disabled id="next-button">Nächste Frage</button>
-                        </div>
+                        <button onclick=" nextQuestion()" class="btn btn-danger" disabled id="next-button">Nächste
+                            Frage</button>
+                    </div>
 
                 </div>
             </div>
