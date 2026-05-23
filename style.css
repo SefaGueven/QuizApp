@@ -9,6 +9,18 @@ body{
       justify-content: center !important;
      
 }
+.container-fluid{
+    justify-content: flex-start !important;
+}
+.container-fluid span{
+    margin-left: 16px;
+    font-size: 32px;
+    color: #ff1100;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Geneva, Tahoma, sans-serif;
+}
+.container-fluid img{
+    width: 128px;
+}
 .question-footer{
     border-top: 1px solid rgb(0, 0, 0, 0.4);
     display: flex;
@@ -28,4 +40,24 @@ body{
 }
 .bg-danger{
     color: rgb(255, 255, 255);
+}
+.width-100{
+width: 100%;
+}
+.text-center{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+
+}
+.width-100 img{
+      float: right;
+      width: 128px;
+      margin-bottom: 16px;
+      
+}
+.complete-img{
+    object-fit: cover;
+    width: 128px;
+    margin: 8px;
 }

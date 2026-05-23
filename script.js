@@ -1,7 +1,9 @@
 let currentQuestion = 0;
+let RightQuestions = 0;
 
 function init() {
     document.getElementById("all-questions").innerHTML = questions.length;
+     document.getElementById("all-questions-end").innerHTML = questions.length;
     showQuestion();
 
 }
@@ -9,8 +11,10 @@ function init() {
 function showQuestion() {
 
     if (currentQuestion >= questions.length) {
-        document.getElementById('endScreen').style ='';
+        document.getElementById('endScreen').style ='align-items: center;';
         document.getElementById('questionBody').style="display: none";
+
+         document.getElementById("amount-of-right-question").innerHTML = RightQuestions;
     } else{
         let question = questions[currentQuestion];
 
@@ -30,6 +34,7 @@ function answer(selection) {
     if (selectedQuestionNumber == question['right_answer']) {       //Ist die ausgewählte Antwort gleich der richtigen Antwort?
         console.log('Richtige Antwort');                            //Wird ausgeführt, wenn die Antwort stimmt.
         document.getElementById(selection).parentNode.classList.add('bg-success'); // mit dem befehl"parentNode" zu Eltern-Element gehen.                   
+        RightQuestions ++;                                          // Mit dieser angabe zählen wir die richtigen antworten.
     }
     else {                              // Wird ausgeführt, wenn die Antwort falsch ist.
         document.getElementById(selection).parentNode.classList.add('bg-danger');
