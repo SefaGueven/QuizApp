@@ -1,9 +1,8 @@
 let currentQuestion = 0;
-let RightQuestions = 0;
+let rightQuestions = 0;
 
 function init() {
     document.getElementById("all-questions").innerHTML = questions.length;
-     document.getElementById("all-questions-end").innerHTML = questions.length;
     showQuestion();
 
 }
@@ -11,20 +10,29 @@ function init() {
 function showQuestion() {
 
     if (currentQuestion >= questions.length) {
-        document.getElementById('endScreen').style ='align-items: center;';
-        document.getElementById('questionBody').style="display: none";
+        document.getElementById('endScreen').style = 'align-items: center;';
+        document.getElementById('questionBody').style = "display: none";
 
-         document.getElementById("amount-of-right-question").innerHTML = RightQuestions;
-    } else{
+        document.getElementById("all-questions-end").innerHTML = questions.length;
+        document.getElementById('amount-of-right-question').innerHTML = rightQuestions;
+        document.getElementById('header-image').src = 'assets/brain_result.png';
+        document.getElementById('header-image').style.cssText = "width: 128px; display:block; margin:0 auto;" ;
+    } else {//Show question
+
+        let percent = currentQuestion / questions.length;
+        percent = Math.round(percent * 100);
+        document.getElementById('progress_bar').innerHTML = `${percent}%`;
+        document.getElementById('progress_bar').style = `width: ${percent}%;`;
+
         let question = questions[currentQuestion];
 
-    document.getElementById('question-counter').innerHTML = currentQuestion + 1;
-    document.getElementById('questiontext').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
-}
+        document.getElementById('question-counter').innerHTML = currentQuestion + 1;
+        document.getElementById('questiontext').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    }
 }
 function answer(selection) {
     let question = questions[currentQuestion];
@@ -34,7 +42,7 @@ function answer(selection) {
     if (selectedQuestionNumber == question['right_answer']) {       //Ist die ausgewählte Antwort gleich der richtigen Antwort?
         console.log('Richtige Antwort');                            //Wird ausgeführt, wenn die Antwort stimmt.
         document.getElementById(selection).parentNode.classList.add('bg-success'); // mit dem befehl"parentNode" zu Eltern-Element gehen.                   
-        RightQuestions ++;                                          // Mit dieser angabe zählen wir die richtigen antworten.
+        rightQuestions++;                                          // Mit dieser angabe zählen wir die richtigen antworten.
     }
     else {                              // Wird ausgeführt, wenn die Antwort falsch ist.
         document.getElementById(selection).parentNode.classList.add('bg-danger');
