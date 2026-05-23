@@ -19,8 +19,9 @@ function showQuestion() {
         document.getElementById('header-image').style.cssText = "width: 128px; display:block; margin:0 auto;" ;
     } else {//Show question
 
-        let percent = currentQuestion / questions.length;
+        let percent = (currentQuestion + 1) / questions.length;
         percent = Math.round(percent * 100);
+
         document.getElementById('progress_bar').innerHTML = `${percent}%`;
         document.getElementById('progress_bar').style = `width: ${percent}%;`;
 
