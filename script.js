@@ -1,5 +1,7 @@
 let currentQuestion = 0;
 let rightQuestions = 0;
+let AUDIO_SUCCESS = new Audio('assets/Sound/Success.mp3');
+let AUDIO_FAIL = new Audio('assets/Sound/Wrong.mp3');
 
 function init() {
     document.getElementById("all-questions").innerHTML = questions.length;
@@ -16,7 +18,7 @@ function showQuestion() {
         document.getElementById("all-questions-end").innerHTML = questions.length;
         document.getElementById('amount-of-right-question').innerHTML = rightQuestions;
         document.getElementById('header-image').src = 'assets/brain_result.png';
-        document.getElementById('header-image').style.cssText = "width: 128px; display:block; margin:0 auto;" ;
+        document.getElementById('header-image').style.cssText = "width: 128px; display:block; margin:0 auto;";
     } else {//Show question
 
         let percent = (currentQuestion + 1) / questions.length;
@@ -44,8 +46,10 @@ function answer(selection) {
         console.log('Richtige Antwort');                            //Wird ausgeführt, wenn die Antwort stimmt.
         document.getElementById(selection).parentNode.classList.add('bg-success'); // mit dem befehl"parentNode" zu Eltern-Element gehen.                   
         rightQuestions++;                                          // Mit dieser angabe zählen wir die richtigen antworten.
+         AUDIO_SUCCESS.play();
     }
     else {                              // Wird ausgeführt, wenn die Antwort falsch ist.
+        AUDIO_FAIL.play();
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');    // richtige wird dan hier auch angezeigt. 
         // Button für Nächste Frage wird hier aktiviert.
@@ -61,20 +65,20 @@ function nextQuestion() {                                                       
 }
 
 function resetAnswerButton() {
-
-    // document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
-    // document.getElementById('answer_1').parentNode.classList.remove('bg-success');
-    // document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
-    // document.getElementById('answer_2').parentNode.classList.remove('bg-success');
-    // document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
-    // document.getElementById('answer_3').parentNode.classList.remove('bg-success');
-    // document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
-    // document.getElementById('answer_4').parentNode.classList.remove('bg-success');
-    //Mit dieser Schleife haben wir die 8 zeilen code gespart,
     for (let i = 1; i <= 4; i++) {                                              // "<= " solange i kleiner oder gleich 4 ist
         let aw = document.getElementById(`answer_${i}`).parentNode;            // "`answer_${i}`"<-- Template String  , hollt automatisch alle Antwort-Elemente.
         aw.classList.remove('bg-danger', 'bg-success');
     }
-
 }
+    function restartGame() {
+        document.getElementById('header-image').src = 'assets/img/Linear.jpg';
+        document.getElementById('questionBody').style = "";//questionBody wieder anzeigen
+          document.getElementById('endScreen').style = "display: none"; // endScreen ausblenden
+        currentQuestion = 0;
+        rightQuestions = 0;
+        init();
+          
+    }
+
+
 
