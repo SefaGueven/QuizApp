@@ -12,30 +12,42 @@ function init() {
 function showQuestion() {
 
     if (currentQuestion >= questions.length) {
-        document.getElementById('endScreen').style = 'align-items: center;';
-        document.getElementById('questionBody').style = "display: none";
-
-        document.getElementById("all-questions-end").innerHTML = questions.length;
-        document.getElementById('amount-of-right-question').innerHTML = rightQuestions;
-        document.getElementById('header-image').src = 'assets/brain_result.png';
-        document.getElementById('header-image').style.cssText = "width: 128px; display:block; margin:0 auto;";
+        showEndScreen();
     } else {//Show question
 
-        let percent = (currentQuestion + 1) / questions.length;
-        percent = Math.round(percent * 100);
-
-        document.getElementById('progress_bar').innerHTML = `${percent}%`;
-        document.getElementById('progress_bar').style = `width: ${percent}%;`;
-
-        let question = questions[currentQuestion];
-
-        document.getElementById('question-counter').innerHTML = currentQuestion + 1;
-        document.getElementById('questiontext').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+        showNextQuestion();
     }
+}
+function showEndScreen() {
+    // Show End Screen 
+    document.getElementById('endScreen').style = 'align-items: center;';
+    document.getElementById('questionBody').style = "display: none";
+
+    document.getElementById("all-questions-end").innerHTML = questions.length;
+    document.getElementById('amount-of-right-question').innerHTML = rightQuestions;
+    document.getElementById('header-image').src = 'assets/brain_result.png';
+    document.getElementById('header-image').style.cssText = "width: 128px; display:block; margin:0 auto;";
+}
+
+function showNextQuestion() {
+   updateToNextQuestion();
+
+    let question = questions[currentQuestion];
+
+    document.getElementById('question-counter').innerHTML = currentQuestion + 1;
+    document.getElementById('questiontext').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+
+}
+function updateToNextQuestion(){
+     let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+
+    document.getElementById('progress_bar').innerHTML = `${percent}%`;
+    document.getElementById('progress_bar').style = `width: ${percent}%;`;
 }
 function answer(selection) {
     let question = questions[currentQuestion];
@@ -46,7 +58,7 @@ function answer(selection) {
         console.log('Richtige Antwort');                            //Wird ausgeführt, wenn die Antwort stimmt.
         document.getElementById(selection).parentNode.classList.add('bg-success'); // mit dem befehl"parentNode" zu Eltern-Element gehen.                   
         rightQuestions++;                                          // Mit dieser angabe zählen wir die richtigen antworten.
-         AUDIO_SUCCESS.play();
+        AUDIO_SUCCESS.play();
     }
     else {                              // Wird ausgeführt, wenn die Antwort falsch ist.
         AUDIO_FAIL.play();
@@ -70,15 +82,15 @@ function resetAnswerButton() {
         aw.classList.remove('bg-danger', 'bg-success');
     }
 }
-    function restartGame() {
-        document.getElementById('header-image').src = 'assets/img/Linear.jpg';
-        document.getElementById('questionBody').style = "";//questionBody wieder anzeigen
-          document.getElementById('endScreen').style = "display: none"; // endScreen ausblenden
-        currentQuestion = 0;
-        rightQuestions = 0;
-        init();
-          
-    }
+function restartGame() {
+    document.getElementById('header-image').src = 'assets/img/Linear.jpg';
+    document.getElementById('questionBody').style = "";//questionBody wieder anzeigen
+    document.getElementById('endScreen').style = "display: none"; // endScreen ausblenden
+    currentQuestion = 0;
+    rightQuestions = 0;
+    init();
+
+}
 
 
 
