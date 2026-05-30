@@ -19,7 +19,6 @@ function gameIsOver(){
    return currentQuestion >= questions.length;
 }
 function showEndScreen() {
-    // Show End Screen 
     document.getElementById('endScreen').style = 'align-items: center;';
     document.getElementById('questionBody').style = "display: none";
     document.getElementById("all-questions-end").innerHTML = questions.length;
@@ -48,7 +47,7 @@ function answer(selection) {
     let selectedQuestionNumber = selection.slice(-1);               //slice(-1)=> Gibt das letzte Element – egal ob Array oder String
     let idOfRightAnswer = `answer_${question['right_answer']}`;     //Diese Zeile baut dynamisch eine ID zusammen, um die richtige Antwort im HTML zu finden. Das ist ein Template String (mit ` statt " ") Vorteil: Du kannst Variablen direkt einbauen (${...})
 
-    if (selectedQuestionNumber == question['right_answer']) {       //Ist die ausgewählte Antwort gleich der richtigen Antwort?
+    if (rightAnswerSelected(selectedQuestionNumber)) {       //Ist die ausgewählte Antwort gleich der richtigen Antwort?
         document.getElementById(selection).parentNode.classList.add('bg-success'); // mit dem befehl"parentNode" zu Eltern-Element gehen. Wird ausgeführt, wenn die Antwort stimmt.                   
         rightQuestions++;                                          // Mit dieser angabe zählen wir die richtigen antworten.
         AUDIO_SUCCESS.play();
@@ -60,6 +59,9 @@ function answer(selection) {
         // Button für Nächste Frage wird hier aktiviert.
     }
     document.getElementById('next-button').disabled = false;
+}
+function rightAnswerSelected(selectedQuestionNumber){   //diese Funktion benötigt die VAriable "selectedQuestionNumber" das in übergeordneten funktion definert ist deshalb wird das "selectedQuestionNumber" in klammern geschreiben .
+    return selectedQuestionNumber == question['right_answer'];
 }
 function nextQuestion() {                                                          //Funktion für Nächste frage aufrufen.
     currentQuestion++;
